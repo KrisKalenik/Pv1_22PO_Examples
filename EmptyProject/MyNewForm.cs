@@ -19,7 +19,7 @@ namespace EmptyProject
 
         public override void MyClick(object sender, EventArgs e)
         {
-            //base.MyClick(sender, e);
+            base.MyClick(sender, e);
 
             this.Height = this.Width * 2;
         }
