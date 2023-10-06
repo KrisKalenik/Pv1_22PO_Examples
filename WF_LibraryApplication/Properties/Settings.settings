@@ -11,5 +11,20 @@
     <Setting Name="usrSaveCred" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="dbServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DESKTOP-7IHQ5JA\SQLEXPRESS</Value>
+    </Setting>
+    <Setting Name="dbDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PO1490</Value>
+    </Setting>
+    <Setting Name="dbUserId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dbPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dbIsSecured" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

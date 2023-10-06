@@ -58,5 +58,65 @@ namespace WF_LibraryApplication.Properties {
                 this["usrSaveCred"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DESKTOP-7IHQ5JA\\SQLEXPRESS")]
+        public string dbServer {
+            get {
+                return ((string)(this["dbServer"]));
+            }
+            set {
+                this["dbServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PO1490")]
+        public string dbDatabase {
+            get {
+                return ((string)(this["dbDatabase"]));
+            }
+            set {
+                this["dbDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string dbUserId {
+            get {
+                return ((string)(this["dbUserId"]));
+            }
+            set {
+                this["dbUserId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string dbPassword {
+            get {
+                return ((string)(this["dbPassword"]));
+            }
+            set {
+                this["dbPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool dbIsSecured {
+            get {
+                return ((bool)(this["dbIsSecured"]));
+            }
+            set {
+                this["dbIsSecured"] = value;
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WF_LibraryApplication.Helpers;
+using WF_LibraryApplication.UIForms;
 
 namespace WF_LibraryApplication
 {
@@ -73,6 +74,20 @@ namespace WF_LibraryApplication
 
                 return string.IsNullOrEmpty(errorMsgLogin) && string.IsNullOrEmpty(errorMsgPassword);
             }
+        }
+
+        private void lblRegistrationFrm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmRegistration frmRegistration = new frmRegistration();
+            frmRegistration.ShowDialog();
+
+            //(new frmRegistration()).ShowDialog();
+        }
+
+        private void lblDbConfigFrm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmDbConfig frmDbConfig = new frmDbConfig();
+            frmDbConfig.ShowDialog();
         }
     }
 }

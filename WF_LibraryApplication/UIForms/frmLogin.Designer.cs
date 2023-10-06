@@ -127,6 +127,7 @@
             this.lblRegistrationFrm.TabIndex = 8;
             this.lblRegistrationFrm.TabStop = true;
             this.lblRegistrationFrm.Text = "Registration";
+            this.lblRegistrationFrm.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRegistrationFrm_LinkClicked);
             // 
             // lblDbConfigFrm
             // 
@@ -137,6 +138,7 @@
             this.lblDbConfigFrm.TabIndex = 9;
             this.lblDbConfigFrm.TabStop = true;
             this.lblDbConfigFrm.Text = "DB Configuration";
+            this.lblDbConfigFrm.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDbConfigFrm_LinkClicked);
             // 
             // epCredentials
             // 
