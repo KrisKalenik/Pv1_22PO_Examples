@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseManager.cs" />
+    <Compile Include="Database\UserProfile.cs" />
+    <Compile Include="Helpers\ConfigEngine.cs" />
     <Compile Include="Helpers\EncriptionEngine.cs" />
     <Compile Include="Helpers\SettingsEngine.cs" />
     <Compile Include="Helpers\ValidationEngine.cs" />
@@ -107,7 +111,6 @@
     <Content Include="education_books_library_icon_149685.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\" />
     <Folder Include="DebugUtilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

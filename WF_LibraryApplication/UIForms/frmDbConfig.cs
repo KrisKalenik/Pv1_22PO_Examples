@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WF_LibraryApplication.Helpers;
+using WF_LibraryApplication.Database;
 
 namespace WF_LibraryApplication.UIForms
 {
@@ -36,11 +37,12 @@ namespace WF_LibraryApplication.UIForms
             tbUserPassword.Enabled = !cbIntSecurity.Checked;
         }
 
-        private void btnTestConfig_Click(object sender, EventArgs e)
+        private async void btnTestConfig_Click(object sender, EventArgs e)
         {
             try
             {
-                if(true)
+                if(await DatabaseManager.TryConnectionAsync(tbServer.Text, tbDatabase.Text,
+                    tbUserId.Text, tbUserPassword.Text, cbIntSecurity.Checked))
                 {
                     btnSave.Enabled = true;
                     sbStatus.Text = "Connected successfully.";
@@ -62,7 +64,7 @@ namespace WF_LibraryApplication.UIForms
             SettingsEngine.SaveDbConfiguration(tbServer.Text,
                 tbDatabase.Text, tbUserId.Text, tbUserPassword.Text,
                 cbIntSecurity.Checked);
-            /////
+            ConfigEngine.SaveConnectionString(DatabaseManager.CustomConnectionString());
             sbStatus.Text = "Connection string has been successfully saved.";
         }
 
