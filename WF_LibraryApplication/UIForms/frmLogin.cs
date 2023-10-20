@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WF_LibraryApplication.Helpers;
 using WF_LibraryApplication.UIForms;
+using WF_LibraryApplication.Database;
 
 namespace WF_LibraryApplication
 {
@@ -41,7 +42,7 @@ namespace WF_LibraryApplication
             this.Close();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private async void btnOk_Click(object sender, EventArgs e)
         {
             if (areCredentialsValid)
             {
@@ -53,7 +54,11 @@ namespace WF_LibraryApplication
                     else
                         SettingsEngine.ClearDefaultCredentials();
 
-                    //connect to DB
+                    if (!(await DatabaseManager.CheckUserCredentialsAsync(tbLogin.Text, tbPassword.Text)))
+                    {
+                        MessageBox.Show("Credentials are wrong");
+                    }
+                    else this.Close();
                 }
                 catch(Exception ex)
                 {

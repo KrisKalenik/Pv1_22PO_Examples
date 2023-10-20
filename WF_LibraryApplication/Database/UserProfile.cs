@@ -23,7 +23,7 @@ namespace WF_LibraryApplication.Database
         {
             if(string.IsNullOrEmpty(role))
                 throw new ArgumentNullException("Role cannot be null or whitespace", nameof(role));
-            if (role.Contains(role))
+            if (roles.Contains(role))
                 throw new InvalidOperationException("This role already exists");
             roles.Add(role);
         }

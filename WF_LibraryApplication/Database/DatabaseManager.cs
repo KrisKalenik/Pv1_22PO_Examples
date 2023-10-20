@@ -12,6 +12,7 @@ namespace WF_LibraryApplication.Database
     {
         //Sorted Procedure Names
         private static string spGetUserCredentials = "spGetUserCredentials";
+        private static string spInsertUsersData = "spInsertUsersData";
 
         public static string ConnectionStringDefaultKey
         {
@@ -66,5 +67,92 @@ namespace WF_LibraryApplication.Database
             return await TryConnectionAsync(SettingsEngine.Server, SettingsEngine.Database,
                 SettingsEngine.UserId, SettingsEngine.UserPassword, SettingsEngine.IsSecured);
         }
+
+        public static async Task<bool> CheckUserCredentialsAsync(string login, string password)
+        {
+            UserProfile.IsLoggedIn = false;
+
+            using (var connection = new SqlConnection(CustomConnectionString(true)))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand(spGetUserCredentials, connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@login", login.Trim()));
+                    command.Parameters.Add(new SqlParameter("@password", password.Trim()));
+                    command.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = "@fullName",
+                        SqlDbType = System.Data.SqlDbType.VarChar,
+                        Size = 20,
+                        Direction = System.Data.ParameterDirection.Output
+                    }) ;
+
+                    using (var sqlDataReader = await command.ExecuteReaderAsync())
+                    {
+                        if (sqlDataReader.HasRows)
+                        {
+                            //if (command.Parameters["@fullName"] != null)
+                            //    UserProfile.FullName = 
+                            //        command.Parameters["@fullName"].Value.ToString().Trim();
+
+                            UserProfile.IsLoggedIn = true;
+                            while(await sqlDataReader.ReadAsync())
+                            {
+                                UserProfile.AddNewRole(sqlDataReader.GetValue(0).ToString().Trim());
+                            }
+                        }
+                        else
+                        {
+                            UserProfile.IsLoggedIn = false;
+                        }
+                    }
+
+                }
+            }
+
+            return UserProfile.IsLoggedIn;
+
+        }
+
+        public static async Task<bool> InsertUserCredentials(string login, string password, 
+            string fullName = null, string gender = null, Object birthday = null, string email = null, string phone = null,
+            List<string> roles = null)
+        {
+            bool result = false;
+
+            using (var connection = new SqlConnection(CustomConnectionString(true)))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new SqlCommand(spInsertUsersData, connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddRange(new SqlParameter[]
+                    {
+                        new SqlParameter("@login", login.Trim()),
+                        new SqlParameter("@password", password.Trim()),
+                        new SqlParameter("@fullName", fullName.Trim()),
+                        new SqlParameter("@gender", gender.Trim()),
+                        new SqlParameter("@birthday", birthday),
+                        new SqlParameter("@email", email.Trim()),
+                        new SqlParameter("@phone", phone.Trim()),
+                        new SqlParameter("@roles", roles == null ? null : string.Join(",", roles))
+                    }
+                    );
+
+                    int res = await command.ExecuteNonQueryAsync();
+                    if (res > 0) result = true;
+
+                }
+            }
+
+            return result;
+
+        }
+
     }
 }

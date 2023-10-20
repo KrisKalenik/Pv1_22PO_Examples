@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WF_LibraryApplication.Helpers;
+using WF_LibraryApplication.Database;
 
 namespace WF_LibraryApplication.UIForms
 {
@@ -77,12 +78,17 @@ namespace WF_LibraryApplication.UIForms
             ValidateControl(tbPhone, ValidationEngine.ValidatePhoneErrorMessage, e);
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private async void btnOk_Click(object sender, EventArgs e)
         {
             if(ValidateChildren())
             {
                 try
                 {
+                    await DatabaseManager.InsertUserCredentials(
+                        login:tbLogin.Text, password:tbPassword.Text,
+                        birthday:tbBirthday.Value, fullName:tbFullName.Text,
+                        gender:tbGender.Text, email:tbEmail.Text,
+                        phone:tbPhone.Text);
                     MessageBox.Show("User data saved");
                 }
                 catch(Exception ex)

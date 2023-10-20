@@ -70,6 +70,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIForms\frmMainAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\frmMainAdmin.Designer.cs">
+      <DependentUpon>frmMainAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\frmMainUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\frmMainUser.Designer.cs">
+      <DependentUpon>frmMainUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\frmRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\frmMainAdmin.resx">
+      <DependentUpon>frmMainAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\frmRegistration.resx">
       <DependentUpon>frmRegistration.cs</DependentUpon>
