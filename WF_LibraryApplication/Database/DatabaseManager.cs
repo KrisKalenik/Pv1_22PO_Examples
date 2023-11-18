@@ -22,6 +22,14 @@ namespace WF_LibraryApplication.Database
             }
         }
 
+        public static string LocalDbConnectionString
+        {
+            get
+            {
+                return ConfigEngine.GetConnectionString("WF_LibraryApplication.Properties.Settings.LocalDatabaseConnectionString");
+            }
+        }
+
         public static string CustomConnectionString(bool fromAppConfig = false)
         {
             if(fromAppConfig)

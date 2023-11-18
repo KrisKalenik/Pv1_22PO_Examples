@@ -21,14 +21,16 @@ namespace WF_LibraryApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new frmLogin());
+            //Application.Run(new frmLogin());
 
-            if (UserProfile.IsLoggedIn)
+            /*if (UserProfile.IsLoggedIn)
             {
                 if (UserProfile.Roles.Contains("Admin"))
                     Application.Run(new frmMainAdmin());
                 else Application.Run(new frmMainUser());
-            }
+            }*/
+
+            Application.Run(new frmMainUser());
         }
     }
 }

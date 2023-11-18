@@ -118,5 +118,27 @@ namespace WF_LibraryApplication.Properties {
                 this["dbIsSecured"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-7IHQ5JA\\SQLEXPRESS;Initial Catalog=Pv1_22PO;Integrated Securi" +
+            "ty=True")]
+        public string Pv1_22POConnectionString {
+            get {
+                return ((string)(this["Pv1_22POConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\LocalDatabase" +
+            ".mdf;Integrated Security=True")]
+        public string LocalDatabaseConnectionString {
+            get {
+                return ((string)(this["LocalDatabaseConnectionString"]));
+            }
+        }
     }
 }
