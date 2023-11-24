@@ -161,7 +161,7 @@ namespace WF_LibraryApplication.Office
                 throw ex;
             }
             _currentRange = range;
-            _selection = new WordSelection(range, false);
+            _selection = new WordSelection(range, isParagraph);
 
         }
 
@@ -171,6 +171,33 @@ namespace WF_LibraryApplication.Office
 
             _currentRange = _table.Cell(row, column).Range;
             _selection = new WordSelection(_currentRange, false);
+        }
+
+        public void ReplaceFirstString(string strToFind, string strToReplace)
+        {
+            if (Closed) throw new Exception("Document Closed");
+            object strToFindObj = strToFind;
+            object strToReplaceObj = strToReplace;
+            Word.Range range;
+            object replaceTypeObj = Word.WdReplace.wdReplaceOne;
+
+            try
+            {
+                for (int i = 1; i <= _document.Sections.Count; i++)
+                {
+                    range = _document.Sections[i].Range;
+                    Word.Find find = range.Find;
+                    object[] wordFindParameters = new object[15] { strToFindObj, _missingObj, _missingObj,
+                    _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, strToReplaceObj,
+                    replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj};
+                    find.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, find, wordFindParameters);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void ReplaceAllStrings(string strToFind, string strToReplace)
@@ -188,8 +215,8 @@ namespace WF_LibraryApplication.Office
                     range = _document.Sections[i].Range;
                     Word.Find find = range.Find;
                     object[] wordFindParameters = new object[15] { strToFindObj, _missingObj, _missingObj,
-                    _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, strToReplaceObj,
-                    replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj};
+                    _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, _missingObj, strToReplaceObj,
+                    replaceTypeObj, _missingObj, _missingObj, _missingObj, _missingObj};
                     find.GetType().InvokeMember("Execute", BindingFlags.InvokeMethod, null, find, wordFindParameters);
                     
                 }
@@ -234,12 +261,22 @@ namespace WF_LibraryApplication.Office
         public void Save(string pathToSave)
         {
             Object pathToSaveObj = pathToSave;
-            _document.SaveAs(ref pathToSaveObj, Word.WdSaveFormat.wdFormatDocument,
+            _document.SaveAs(ref pathToSaveObj, Word.WdSaveFormat.wdFormatDocumentDefault,
                 ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
                 ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
                 ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
                 ref _missingObj, ref _missingObj);
         }
+
+        /*public void Save(string pathToSave)
+        {
+            Object pathToSaveObj = pathToSave;
+            _document.SaveAs(ref pathToSaveObj, Word.WdSaveFormat.wdFormatDocument,
+                ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
+                ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
+                ref _missingObj, ref _missingObj, ref _missingObj, ref _missingObj,
+                ref _missingObj, ref _missingObj);
+        }*/
 
         public void InsertFile(string pathToFile)
         {
@@ -308,7 +345,7 @@ namespace WF_LibraryApplication.Office
             _selection = new WordSelection(_table.Range, true, false);
         }
 
-        public void AddRpwToTable()
+        public void AddRowToTable()
         {
             _table.Rows.Add(ref _missingObj);
         }
@@ -364,6 +401,19 @@ namespace WF_LibraryApplication.Office
             }
         }
 
+        public static void FillShowTemplate(WordDocument wordDoc, Action<WordDocument> fillWordDoc)
+        { 
+            try
+            {
+                fillWordDoc(wordDoc);
+            }
+            catch (Exception ex)
+            {
+                if (wordDoc != null) wordDoc.Close();
+                throw ex;
+            }
+        }
+
         public void FillShowTemplate(Action<WordDocument> fillWordDoc)
         {
             try
@@ -376,6 +426,24 @@ namespace WF_LibraryApplication.Office
                 throw ex;
             }
             this.Visible = true;
+        }
+
+        public void InsertImage(string imagePath)
+        {
+            if (this.Closed) throw new Exception("Document Closed");
+            try
+            {
+                _currentRange.InlineShapes.AddPicture(imagePath, ref _missingObj, ref _missingObj, _currentRange);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int RowCount()
+        {
+            return _table.Rows.Count;
         }
     }
 }

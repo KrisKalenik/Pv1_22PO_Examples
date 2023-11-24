@@ -153,5 +153,7 @@ namespace WF_LibraryApplication.Office
             _currentRange.ListFormat.ApplyBulletDefault();
         }
 
+
+
     }
 }

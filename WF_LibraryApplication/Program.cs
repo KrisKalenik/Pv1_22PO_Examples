@@ -30,7 +30,7 @@ namespace WF_LibraryApplication
                 else Application.Run(new frmMainUser());
             }*/
 
-            Application.Run(new frmMainUser());
+            Application.Run(new frmWordExamples());
         }
     }
 }
