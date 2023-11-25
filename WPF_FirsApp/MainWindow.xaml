@@ -1,0 +1,115 @@
+﻿<Window x:Class="WPF_FirsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        
+        xmlns:local="clr-namespace:WPF_FirsApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="AliceBlue">
+    <Window.Resources>
+        <!--<ResourceDictionary Source="Dictionary1.xaml"/>-->
+        <LinearGradientBrush x:Key="gradientStyle" StartPoint="0.5,1" EndPoint="0.5,0">
+            <GradientStop Color="LightBlue" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+        <col:ArrayList x:Key="phones">
+            <sys:String>
+                Xiaomi
+            </sys:String>
+            <sys:String>
+                Samsung
+            </sys:String>
+            <sys:String>
+                Google
+            </sys:String>
+        </col:ArrayList>
+        <local:Phone x:Key="localPhone" Title="Nexus" Company="Google" Price="300$"/>
+        <Style x:Key="firstStyle" TargetType="Button">
+            <Setter Property="Background" Value="Aqua"/>
+            <Setter Property="Foreground" Value="Brown"/>
+            <Setter Property="FontFamily" Value="Andy"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource firstStyle}">
+            <Style.Setters>
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontSize" Value="14"/>
+                </Trigger>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="IsPressed" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+                <DataTrigger Binding="{Binding ElementName=cbDisable, Path=IsChecked}" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="mainGrid">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF9BB4E4" Offset="0.5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GridSplitter Grid.Column="1" Grid.Row="0" ShowsPreview="False" Width="3"
+                      HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+        <GridSplitter Grid.Row="1" ShowsPreview="False" Height="3" Grid.ColumnSpan="3"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <Canvas >
+            <TextBlock Text="Left Pannel" Foreground="Azure" FontSize="40"/>
+            <Button x:Name="button1" MaxHeight="40" MaxWidth="120" Background="{StaticResource gradientStyle}" Canvas.Left="149" Canvas.Top="93">
+                <Button.Resources>
+                    <SolidColorBrush x:Key="darkStyle" Color="Red"/>
+                </Button.Resources>
+                <Button.Content >
+                    Resources WPF
+                </Button.Content>
+            </Button>
+            <Button Content="Sme Button" Canvas.Left="157" Canvas.Top="146"/>
+        </Canvas>
+        <Canvas Grid.Column="2" >
+            <TextBlock Text="Right Pannel" Foreground="Azure" FontSize="40"/>
+            <ListBox ItemsSource="{StaticResource phones}" Canvas.Left="168" Canvas.Top="76"/>
+        </Canvas>
+        <Canvas Grid.Column="0" Grid.Row="2" Background="Beige" Grid.ColumnSpan="3">
+            <TextBlock Text="Right Pannel" Foreground="Green" FontSize="40"/>
+            <UniformGrid Rows="2" Columns="2" Canvas.Top="58" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Model:" />
+                <TextBlock Text="{Binding Source={StaticResource localPhone}, Path=Title}"/>
+                <TextBlock Text="Price:" />
+                <TextBlock Text="{Binding Source={StaticResource localPhone}, Path=Price}"/>
+            </UniformGrid>
+            <CheckBox x:Name="cbDisable" Content="Disable" Canvas.Left="7" Canvas.Top="108"/>
+            <Button x:Name="btnClick" Content="Button" Canvas.Left="8" Canvas.Top="136"/>
+        </Canvas>
+
+
+
+    </Grid>
+</Window>
