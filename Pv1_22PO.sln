@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF_LibraryApplication", "WF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_FirsApp", "WPF_FirsApp\WPF_FirsApp.csproj", "{C1B5C9C0-06BD-42A0-952B-DE8468A864AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_12082023", "WPF_12082023\WPF_12082023.csproj", "{235220F5-6881-445B-BA0F-D003365A3272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_12082023", "WPF_12082023\WPF_12082023.csproj", "{235220F5-6881-445B-BA0F-D003365A3272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf_3dAniimation", "Wpf_3dAniimation\Wpf_3dAniimation.csproj", "{5C478D5A-6754-465A-9791-B6D9A7B39152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{235220F5-6881-445B-BA0F-D003365A3272}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235220F5-6881-445B-BA0F-D003365A3272}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235220F5-6881-445B-BA0F-D003365A3272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C478D5A-6754-465A-9791-B6D9A7B39152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C478D5A-6754-465A-9791-B6D9A7B39152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C478D5A-6754-465A-9791-B6D9A7B39152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C478D5A-6754-465A-9791-B6D9A7B39152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
